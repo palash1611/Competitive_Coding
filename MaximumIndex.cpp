@@ -75,7 +75,7 @@ int find(int *a,int n)
 
 		if(v-u>0)
 		{
-      cout<<" "<<mp[make_pair(10,11)]<<endl;
+      //cout<<" "<<mp[make_pair(10,11)]<<endl;
 			if(mp[make_pair(u+1,v)]==0)
 			{
 				mp[make_pair(u+1,v)]=1;
