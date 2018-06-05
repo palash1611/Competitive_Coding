@@ -1,0 +1,254 @@
+void show_stack(stack<int> st){
+
+  stack <int> s=st;
+
+  while(!s.empty())
+  {
+    cout<<s.top()<<" ";
+    s.pop();
+  }
+  cout<<endl;
+}
+
+=====================================================
+
+void show_queue(queue<int> q){
+
+  queue <int> s=q;
+
+  while(!s.empty())
+  {
+    cout<<s.front()<<" ";
+    s.pop();
+  }
+  cout<<endl;
+}
+
+=====================================================
+
+void find_max(stack<long long int> s)
+{
+  stack< long long int> st1,st2;
+  st1=s;
+  long long int max;
+  st2.push(st1.top());
+  st1.pop();
+  while(!st1.empty())
+  {
+    if(st1.top()>st2.top())
+      max=st1.top();
+    else
+      max=st2.top();
+
+    st2.push(max);
+    st1.pop();
+  }
+
+==================================================
+
+  stack<int> reverse_stack(stack<int> s)
+{
+  stack<int> t;
+  while(!s.empty())
+  {
+    t.push(s.top());
+    s.pop();
+  }
+
+  return t;
+}
+
+======================================================
+
+int main()
+{
+  stack<pair <long long int, long long int>> s;
+  long long int n;
+  int type;
+  long long int value;
+  long long int max;
+  cin>>n;
+  for(int i=0;i<n;i++)
+  {
+    cin>>type;
+    switch(type){
+
+      case 1:{
+                cin>>value;
+                if(s.empty())
+                    max=value;
+                else if(s.top().second>value) max=s.top().second;
+                else max=value;
+                s.push(make_pair(value,max));
+                break;
+
+      }
+      case 2: s.pop();
+              break;
+      case 3: pair<long long int,long long int> p=s.top();
+              cout<<p.second<<endl;
+              break;
+
+    }
+
+  }
+
+=====================================================================
+  Brackets Balancing
+string isBalanced(string s) {
+    // Complete this function
+    stack<char> st;
+
+    for (auto c: s) {
+        switch (c) {
+            case '{':
+            case '(':
+            case '[':
+                st.push(c);
+                break;
+            case '}':
+                if (st.empty() || (st.top() != '{')) {
+                    return "NO";
+                }
+                st.pop();
+                break;
+            case ')':
+                if (st.empty() || (st.top() != '(')) {
+                    return "NO";
+                }
+                st.pop();
+                break;
+            case ']':
+                if (st.empty() || (st.top() != '[')) {
+                    return "NO";
+                }
+                st.pop();
+                break;
+        }
+    }
+
+    return st.empty() ? "YES" : "NO";
+}
+
+
+=============================================================================
+Largest Rectangle of a histoogram
+long largestRectangle(vector <int> h, int n) {
+    // Complete this function
+
+    long max=0,area=0;
+    int val;
+    for(int i=0;i<n;i++)
+    {
+        int count=0;
+        val=h[i];
+        for(int j=i+1;j<n;j++)
+        {
+            if(h[j]>val)
+                count++;
+            else break;
+
+        }
+        for(int k=i-1;k>=0;k--)
+        {
+            if(h[k]>val)
+                count++;
+            else break;
+        }
+        count++;
+        area=count*val;
+        if(area>max)
+            max=area;
+    }
+    return max;
+}
+
+========================================================================================
+game of two stacks(Hackerrank)
+
+        int count =0,i=0,j=0,sum=0;
+
+        while(i<n && sum+a[i]<=x)
+        {
+            sum+=a[i];
+            //count++;
+            i++;
+        }
+
+        count=i;
+
+        while(j<m && i>=0)
+        {
+            sum+=b[j];
+            j++;
+
+            while(sum>x && i>0)
+            {
+                i--;
+                sum-=a[i];
+            }
+
+            if(sum<=x && count<i+j)
+                count = i+j;
+
+        }
+        cout<<count<<endl;
+    }
+
+================================================================
+petrol pumps (hackerrank squeues - truck tour)
+
+
+ui n;
+    cin>>n;
+    lli pump=0,tank=0;
+
+    for(ui i=0;i<n;i++)
+    {
+        lli liter;
+        lli km;
+        cin>>liter>>km;
+
+        tank=tank+(liter-km);
+
+        if(tank<0)
+        {
+            pump=i+1;
+            tank=0;
+        }
+    }
+    cout<<pump<<endl;
+
+
+==========================================================================
+text editor (hackerrank stacks)
+
+
+int N;
+    cin>>N;
+    stack<string>stk;
+    string st;
+    while(N--){
+        int n; cin>>n;
+        if(n==1){
+            string str;
+            cin>>str;
+            stk.push(st);
+            st+=str;
+        }
+        else if(n==2){
+            int k;cin>>k;
+             stk.push(st);
+            st.erase(st.size()-k);
+        }
+        else if(n==3){
+            int k;cin>>k;
+            cout<<st[k-1]<<endl;
+        }
+        else{
+            st = stk.top();
+            stk.pop();
+        }
+    }
+
+===========================================================================
